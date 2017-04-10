@@ -9,7 +9,10 @@ import java.io.*;
 import banking.primitive.core.Account.State;
 
 class ServerSolution implements AccountServer {
-
+	
+	// CS Defect -> Final Constants
+	private static final String CHECKING = "Checking";
+	private static final String SAVINGS = "Savings";
 	static String fileName = "accounts.ser";
 
 	Map<String,Account> accountMap = null;
@@ -53,10 +56,11 @@ class ServerSolution implements AccountServer {
 		if (accountMap.get(name) != null) return false;
 		
 		Account acc;
-		if ("Checking".equals(type)) {
+		// CS Defect -> Final Constants
+		if (CHECKING.equals(type)) {
 			acc = new Checking(name, balance);
 
-		} else if ("Savings".equals(type)) {
+		} else if (SAVINGS.equals(type)) {
 			acc = new Savings(name, balance);
 
 		} else {
